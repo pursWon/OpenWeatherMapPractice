@@ -28,14 +28,43 @@ class WeatherViewController: UIViewController {
         cityNameLabel.text = weatherData.name
         weatherLabel.text = weatherData.weather[0].main
         tempLabel.text = String(weatherData.main.temp)
-        minLabel.text = String(weatherData.main.tempMin)
-        maxLabel.text = String(weatherData.main.tempMax)
-        pressureLabel.text = String(weatherData.main.pressure)
+        minLabel.text = "최저 온도 : \(String(weatherData.main.tempMin))"
+        maxLabel.text = "최고 온도 : \(String(weatherData.main.tempMax))"
+        pressureLabel.text = "기압 : \(String(weatherData.main.pressure))"
+        
+        print(weatherData.weather[0].main)
+        
+        getWeatherImage(weatherStatus: weatherData.weather[0].main)
     }
     
     @IBAction func generateButton(_ sender: UIButton) {
         weatherAPI.getWeatherData(url: url, appid: parameters[0], city: parameters[1])
         
         setWeatherData()
+    }
+}
+
+extension WeatherViewController: WeatherImageProtocol {
+    func getWeatherImage(weatherStatus: String) {
+        var status: String = ""
+        
+        switch weatherStatus {
+        case "clear sky":
+            status = "https://openweathermap.org/img/wn/01d@2x.png"
+        case "Rain":
+            status = "https://openweathermap.org/img/wn/10d@2x.png"
+        default:
+            print("Nothing")
+        }
+        
+        DispatchQueue.global().async {
+            if let imageURL = URL(string: status) {
+                if let imageData = try? Data(contentsOf: imageURL) {
+                    DispatchQueue.main.async {
+                        self.iconImage.image = UIImage(data: imageData)
+                    }
+                }
+            }
+        }
     }
 }
