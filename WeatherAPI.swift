@@ -5,6 +5,10 @@ protocol WeatherAPIProtocol {
     func getWeatherData(url: String, appid: String, city: String)
 }
 
+protocol WeatherImageProtocol {
+    func getWeatherImage(weatherStatus: String)
+}
+
 class WeatherAPI: WeatherAPIProtocol {
     var weatherData: WeatherData?
     
