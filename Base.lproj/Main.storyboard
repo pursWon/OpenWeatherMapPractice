@@ -93,7 +93,7 @@
                     </view>
                     <connections>
                         <outlet property="cityNameLabel" destination="UVy-xk-aZm" id="MwA-8G-JXh"/>
-                        <outlet property="iconImage" destination="le7-K7-6Fg" id="k6g-j9-0N2"/>
+                        <outlet property="iconImageView" destination="le7-K7-6Fg" id="ldi-US-ys8"/>
                         <outlet property="maxLabel" destination="etO-cy-Zrc" id="UK2-lH-bl9"/>
                         <outlet property="minLabel" destination="ng3-O8-a5U" id="Whc-lh-tni"/>
                         <outlet property="pressureLabel" destination="ZJQ-4f-9KJ" id="45j-Bn-Q9u"/>
