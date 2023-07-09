@@ -8,7 +8,6 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var minLabel: UILabel!
     @IBOutlet weak var maxLabel: UILabel!
-    @IBOutlet weak var pressureLabel: UILabel!
     
     let weatherAPI = WeatherAPI()
     
@@ -24,7 +23,6 @@ class WeatherViewController: UIViewController {
             self.tempLabel.text = String(weatherData.main.temp)
             self.minLabel.text = "최저 온도 : \(String(weatherData.main.tempMin))"
             self.maxLabel.text = "최고 온도 : \(String(weatherData.main.tempMax))"
-            self.pressureLabel.text = "기압 : \(String(weatherData.main.pressure))"
         } image: { iconImage in
             DispatchQueue.main.async {
                 self.iconImageView.image = iconImage
