@@ -23,14 +23,11 @@ struct Main: Decodable {
     let tempMin: Double
     /// 최고 온도
     let tempMax: Double
-    /// 기압
-    let pressure: Double
     
     enum CodingKeys: String, CodingKey {
         case temp
         case feelsLike = "feels_like"
         case tempMin = "temp_min"
         case tempMax = "temp_max"
-        case pressure
     }
 }
