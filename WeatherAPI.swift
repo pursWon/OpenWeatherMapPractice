@@ -2,32 +2,51 @@ import UIKit
 import Alamofire
 
 protocol WeatherAPIProtocol {
-    func setComponents() -> URL
-    func getWeatherData(completion: @escaping (WeatherData) -> Void, image: @escaping (UIImage) -> Void)
+    func getCurrentWeatherData(setCity: String, completion: @escaping (CurrentData) -> Void, image: @escaping (UIImage) -> Void)
+    func getFiveDaysWeatherData(setLat: String, setLon: String, completion: @escaping (FiveDaysData) -> Void)
     func getWeatherImage(iconNumber: String, iconImage: @escaping (UIImage) -> Void)
 }
 
 class WeatherAPI: WeatherAPIProtocol {
-    func setComponents() -> URL {
+    func getCurrentWeatherData(setCity: String, completion: @escaping (CurrentData) -> Void, image: @escaping (UIImage) -> Void) {
         var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/weather")
+        let city = URLQueryItem(name: "q", value: setCity)
         let appid = URLQueryItem(name: "appid", value: "be7239b92f1e7c5bde30444b35b3946d")
-        let city = URLQueryItem(name: "q", value: "Seoul")
-        components?.queryItems = [appid, city]
+        components?.queryItems = [city, appid]
         
-        guard let url = components?.url else { return URL(string: "")! }
+        guard let url = components?.url else { return }
         
-        return url
-    }
-    
-    func getWeatherData(completion: @escaping (WeatherData) -> Void, image: @escaping (UIImage) -> Void) {
-        AF.request(setComponents(), method: .post).responseDecodable(of: WeatherData.self) { response in
+        AF.request(url, method: .post).responseDecodable(of: CurrentData.self) { response in
             guard response.error == nil else { return }
             guard let data = response.value else { return }
             
             completion(data)
+            
             self.getWeatherImage(iconNumber: data.weather[0].icon) { iconImage in
                 image(iconImage)
             }
+        }
+    }
+    
+    func getFiveDaysWeatherData(setLat: String, setLon: String, completion: @escaping (FiveDaysData) -> Void) {
+        var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/forecast")
+        let lat = URLQueryItem(name: "lat", value: setLat)
+        let lon = URLQueryItem(name: "lon", value: setLon)
+        let appid = URLQueryItem(name: "appid", value: "be7239b92f1e7c5bde30444b35b3946d")
+        components?.queryItems = [lat, lon, appid]
+        
+        guard let url = components?.url else { return }
+        
+        AF.request(url, method: .get).responseDecodable(of: FiveDaysData.self) { response in
+            guard response.error == nil else {
+                
+                print(response.error?.localizedDescription)
+                return }
+            guard let data = response.value else { return }
+            
+            print(data)
+            
+            completion(data)
         }
     }
     
