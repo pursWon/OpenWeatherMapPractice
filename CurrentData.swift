@@ -1,10 +1,11 @@
 import Foundation
 
-struct WeatherData: Decodable {
+struct CurrentData: Decodable {
     let weather: [Weather]
     let main: Main
     /// 도시 이름
     let name: String
+    // let dt_txt: String
 }
 
 struct Weather: Decodable {
