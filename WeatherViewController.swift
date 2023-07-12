@@ -11,18 +11,36 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherTableView: UITableView!
     
     let weatherAPI = WeatherAPI()
-    
-    var cityGeoData: (lon: String, lat: String) = ("", "")
+    var cityGeoData: (lon: String, lat: String) = ("126.9784", "37.566")
+    var city: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        iconImageView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        setIntialWeather()
+        setViewsColor()
+        setCurrentWeather(cityName: "Seoul")
+        setWeatherTableView()
+        // weatherTableView.reloadData()
     }
     
-    func setIntialWeather() {
-        weatherAPI.getCurrentWeatherData(setCity: "Seoul") { weatherData in
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setCurrentWeather(cityName: city)
+        weatherTableView.reloadData()
+    }
+    
+    func setWeatherTableView() {
+        weatherTableView.delegate = self
+        weatherTableView.dataSource = self
+    }
+    
+    func setViewsColor() {
+        iconImageView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+    }
+    
+    func setCurrentWeather(cityName: String) {
+        weatherAPI.getCurrentWeatherData(setCity: cityName) { weatherData in
             self.weatherLabel.text = weatherData.weather[0].main
             self.cityNameLabel.text = weatherData.name
             self.tempLabel.text = String(weatherData.main.temp)
@@ -39,23 +57,51 @@ class WeatherViewController: UIViewController {
         guard let selectVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectCityViewController") as? SelectCityViewController else { return }
         
         selectVC.delegate = self
+        selectVC.sendCity = self
         self.navigationController?.pushViewController(selectVC, animated: true)
     }
 }
 
-extension WeatherViewController: SendGeoData {
-    func setGeoData(geoData: (lon: String, lat: String)) {
-        cityGeoData = (geoData.lon, geoData.lat)
+extension WeatherViewController: SendCityData {
+    func setCityName(name: String) {
+        city = name
     }
 }
 
-extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
+extension WeatherViewController: UITableViewDataSource, UITableViewDelegate, SendGeoData {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
+    }
+    
+    func setGeoData(geoData: (lon: String, lat: String)) {
+        cityGeoData = geoData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = self.weatherTableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+       
+        weatherAPI.getFiveDaysWeatherData(setLon: cityGeoData.lon, setLat: cityGeoData.lat) { weatherData in
+            switch indexPath.row {
+            case 0:
+                cell.descriptionLabel.text = weatherData[0].weather[0].description
+                cell.dayLabel.text = weatherData[0].dtTxt
+                cell.tempertureLabel.text = "\(weatherData[0].main.tempMax) / \(weatherData[0].main.tempMin)"
+            case 1:
+                cell.descriptionLabel.text = weatherData[1].weather[0].description
+                cell.dayLabel.text = weatherData[1].dtTxt
+                cell.tempertureLabel.text = "\(weatherData[1].main.tempMax) / \(weatherData[1].main.tempMin)"
+            case 2:
+                cell.descriptionLabel.text = weatherData[2].weather[0].description
+                cell.dayLabel.text = weatherData[2].dtTxt
+                cell.tempertureLabel.text = "\(weatherData[2].main.tempMax) / \(weatherData[1].main.tempMin)"
+            case 3:
+                cell.descriptionLabel.text = weatherData[3].weather[0].description
+                cell.dayLabel.text = weatherData[3].dtTxt
+                cell.tempertureLabel.text = "\(weatherData[3].main.tempMax) / \(weatherData[3].main.tempMin)"
+            default:
+                fatalError()
+            }
+        }
         
         return cell
     }
