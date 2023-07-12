@@ -80,27 +80,9 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate, Sen
         guard let cell = self.weatherTableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
        
         weatherAPI.getFiveDaysWeatherData(setLon: cityGeoData.lon, setLat: cityGeoData.lat) { weatherData in
-            print(weatherData)
-            switch indexPath.row {
-            case 0:
-                cell.descriptionLabel.text = weatherData[0].weather[0].description
-                cell.dayLabel.text = weatherData[0].dtTxt
-                cell.tempertureLabel.text = "\(weatherData[0].main.tempMax) / \(weatherData[0].main.tempMin)"
-            case 1:
-                cell.descriptionLabel.text = weatherData[1].weather[0].description
-                cell.dayLabel.text = weatherData[1].dtTxt
-                cell.tempertureLabel.text = "\(weatherData[1].main.tempMax) / \(weatherData[1].main.tempMin)"
-            case 2:
-                cell.descriptionLabel.text = weatherData[2].weather[0].description
-                cell.dayLabel.text = weatherData[2].dtTxt
-                cell.tempertureLabel.text = "\(weatherData[2].main.tempMax) / \(weatherData[2].main.tempMin)"
-            case 3:
-                cell.descriptionLabel.text = weatherData[3].weather[0].description
-                cell.dayLabel.text = weatherData[3].dtTxt
-                cell.tempertureLabel.text = "\(weatherData[3].main.tempMax) / \(weatherData[3].main.tempMin)"
-            default:
-                fatalError()
-            }
+            cell.descriptionLabel.text = weatherData[indexPath.row].weather[0].description
+            cell.dayLabel.text = weatherData[indexPath.row].dtTxt
+            cell.tempertureLabel.text = "\(weatherData[indexPath.row].main.tempMax) / \(weatherData[indexPath.row].main.tempMin)"
         }
         
         return cell
