@@ -3,7 +3,7 @@ import Alamofire
 
 protocol WeatherAPIProtocol {
     func getCurrentWeatherData(setCity: String, completion: @escaping (CurrentData) -> Void, image: @escaping (UIImage) -> Void)
-    func getFiveDaysWeatherData(setLat: String, setLon: String, completion: @escaping (FiveDaysData) -> Void)
+    func getFiveDaysWeatherData(setLon: String, setLat: String, completion: @escaping ([List]) -> Void)
     func getWeatherImage(iconNumber: String, iconImage: @escaping (UIImage) -> Void)
 }
 
@@ -28,25 +28,26 @@ class WeatherAPI: WeatherAPIProtocol {
         }
     }
     
-    func getFiveDaysWeatherData(setLat: String, setLon: String, completion: @escaping (FiveDaysData) -> Void) {
+    func getFiveDaysWeatherData(setLon: String, setLat: String, completion: @escaping ([List]) -> Void) {
         var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/forecast")
-        let lat = URLQueryItem(name: "lat", value: setLat)
         let lon = URLQueryItem(name: "lon", value: setLon)
+        let lat = URLQueryItem(name: "lat", value: setLat)
         let appid = URLQueryItem(name: "appid", value: "be7239b92f1e7c5bde30444b35b3946d")
-        components?.queryItems = [lat, lon, appid]
+        components?.queryItems = [lon, lat, appid]
         
         guard let url = components?.url else { return }
         
         AF.request(url, method: .get).responseDecodable(of: FiveDaysData.self) { response in
-            guard response.error == nil else {
-                
-                print(response.error?.localizedDescription)
-                return }
+            guard response.error == nil else { return }
             guard let data = response.value else { return }
             
-            print(data)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let currentDate = formatter.string(from: Date())
             
-            completion(data)
+            let newData = data.list.filter { !$0.dtTxt.contains(currentDate) }.filter { $0.dtTxt.contains("12:00:00") }
+
+            completion(newData)
         }
     }
     
