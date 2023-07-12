@@ -72,7 +72,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jte-s0-03d">
-                                <rect key="frame" x="0.0" y="436" width="393" height="382"/>
+                                <rect key="frame" x="0.0" y="456" width="393" height="362"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherTableViewCell" rowHeight="60" id="mZ0-wD-ENa" customClass="WeatherTableViewCell" customModule="OpenWeatherMapPractice" customModuleProvider="target">
@@ -142,7 +142,7 @@
                             <constraint firstItem="UVy-xk-aZm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Iqb-Fo-Oco"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jte-s0-03d" secondAttribute="trailing" id="Jg8-DS-x0E"/>
                             <constraint firstItem="tpf-MB-p29" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="JiS-dy-XqC"/>
-                            <constraint firstItem="jte-s0-03d" firstAttribute="top" secondItem="tpf-MB-p29" secondAttribute="bottom" constant="20" id="KG3-zq-vyj"/>
+                            <constraint firstItem="jte-s0-03d" firstAttribute="top" secondItem="tpf-MB-p29" secondAttribute="bottom" constant="40" id="MKj-iA-hkD"/>
                             <constraint firstItem="le7-K7-6Fg" firstAttribute="top" secondItem="UVy-xk-aZm" secondAttribute="bottom" constant="10" id="Oyd-3a-c3R"/>
                             <constraint firstItem="tpf-MB-p29" firstAttribute="top" secondItem="YJW-ZR-gRt" secondAttribute="bottom" constant="20" id="cvg-oT-j96"/>
                             <constraint firstItem="YJW-ZR-gRt" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="djt-eq-gfH"/>
