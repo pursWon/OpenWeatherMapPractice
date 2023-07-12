@@ -21,7 +21,8 @@ struct List: Codable {
 
 // MARK: - TempInform
 struct TempInform: Codable {
-    let tempMin, tempMax: Double
+    let tempMin: Double
+    let tempMax: Double
     
     enum CodingKeys: String, CodingKey {
         case tempMin = "temp_min"
@@ -31,6 +32,7 @@ struct TempInform: Codable {
 
 // MARK: - Weather
 struct WeatherInform: Codable {
+    let main: String
     let description: String
     let icon: String
 }
