@@ -20,7 +20,6 @@ class WeatherViewController: UIViewController {
         setViewsColor()
         setCurrentWeather(cityName: "Seoul")
         setWeatherTableView()
-        // weatherTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
