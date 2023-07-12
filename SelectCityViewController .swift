@@ -1,19 +1,29 @@
 import UIKit
 
 protocol SendGeoData {
-    func setGeoData(geoData: (lon: String, lat:String))
+    func setGeoData(geoData: (lon: String, lat: String))
+}
+
+protocol SendCityData {
+    func setCityName(name: String)
 }
 
 class SelectCityViewController: UIViewController {
     @IBOutlet weak var cityTableView: UITableView!
     
+    let weatherAPI = WeatherAPI()
     var cityData: City?
     var delegate: SendGeoData?
+    var sendCity: SendCityData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         CityDataLoad { loadData in
             self.cityData = loadData
@@ -49,12 +59,10 @@ extension SelectCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let weatherVC = self.storyboard?.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController else { return }
         guard let cityData = cityData else { return }
         
-        delegate?.setGeoData(geoData: (String(cityData.city[indexPath.row].lon), String(cityData.city[indexPath.row].lat)))
-        
+        self.delegate?.setGeoData(geoData: (String(cityData.city[indexPath.row].lon), String(cityData.city[indexPath.row].lat)))
+        self.sendCity?.setCityName(name: cityData.city[indexPath.row].name)
         self.navigationController?.popViewController(animated: true)
     }
 }
-
