@@ -3,7 +3,7 @@ import Alamofire
 
 protocol WeatherAPIProtocol {
     func getCurrentWeatherData(setCity: String, completion: @escaping (CurrentData) -> Void, image: @escaping (UIImage) -> Void)
-    func getFiveDaysWeatherData(setLon: String, setLat: String, completion: @escaping ([List]) -> Void)
+    func getFiveDaysWeatherData(setLon: String, setLat: String, completion: @escaping ([List]) -> Void, images: @escaping ([UIImage]) -> Void)
     func getWeatherImage(iconNumber: String, iconImage: @escaping (UIImage) -> Void)
 }
 
@@ -28,7 +28,7 @@ class WeatherAPI: WeatherAPIProtocol {
         }
     }
     
-    func getFiveDaysWeatherData(setLon: String, setLat: String, completion: @escaping ([List]) -> Void) {
+    func getFiveDaysWeatherData(setLon: String, setLat: String, completion: @escaping ([List]) -> Void, images: @escaping ([UIImage]) -> Void) {
         var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/forecast")
         let lon = URLQueryItem(name: "lon", value: setLon)
         let lat = URLQueryItem(name: "lat", value: setLat)
@@ -46,8 +46,25 @@ class WeatherAPI: WeatherAPIProtocol {
             let currentDate = formatter.string(from: Date())
             
             let newData = data.list.filter { !$0.dtTxt.contains(currentDate) }.filter { $0.dtTxt.contains("12:00:00") }
-
+            let imageStrings = newData.map { $0.weather[0].icon }
+            
             completion(newData)
+            
+            DispatchQueue.global().async {
+                var iconImages: [UIImage] = []
+                
+                imageStrings.forEach {
+                    let url = "https://openweathermap.org/img/wn/" + $0 + "@2x.png"
+                    
+                    guard let imageURL = URL(string: url) else { return }
+                    guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                    guard let image = UIImage(data: imageData) else { return }
+                    
+                    iconImages.append(image)
+                }
+                
+                images(iconImages)
+            }
         }
     }
     
