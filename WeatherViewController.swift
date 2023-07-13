@@ -78,11 +78,15 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate, Sen
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = self.weatherTableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
-       
+        
         weatherAPI.getFiveDaysWeatherData(setLon: cityGeoData.lon, setLat: cityGeoData.lat) { weatherData in
             cell.descriptionLabel.text = weatherData[indexPath.row].weather[0].description
-            cell.dayLabel.text = weatherData[indexPath.row].dtTxt
+            cell.dayLabel.text = String(weatherData[indexPath.row].dtTxt.split(separator: " ")[0])
             cell.tempertureLabel.text = "\(weatherData[indexPath.row].main.tempMax) / \(weatherData[indexPath.row].main.tempMin)"
+        } images: { iconImages in
+            DispatchQueue.main.async {
+                cell.iconImageView.image = iconImages[indexPath.row]
+            }
         }
         
         return cell
