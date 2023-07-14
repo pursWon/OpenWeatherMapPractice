@@ -75,34 +75,33 @@
                                 <rect key="frame" x="0.0" y="456" width="393" height="362"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherTableViewCell" rowHeight="60" id="mZ0-wD-ENa" customClass="WeatherTableViewCell" customModule="OpenWeatherMapPractice" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherTableViewCell" rowHeight="80" id="mZ0-wD-ENa" customClass="WeatherTableViewCell" customModule="OpenWeatherMapPractice" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mZ0-wD-ENa" id="4W7-JU-ZmO">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwW-Gt-od2">
-                                                    <rect key="frame" x="30" y="5" width="123" height="11"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <rect key="frame" x="30" y="10" width="123" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최저 온도 / 최고 온도 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdB-xU-xsO">
-                                                    <rect key="frame" x="270" y="20" width="103" height="20"/>
+                                                    <rect key="frame" x="270" y="20" width="103" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날씨 설명 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuK-hF-NME">
-                                                    <rect key="frame" x="30" y="25.999999999999996" width="118" height="13.333333333333332"/>
+                                                    <rect key="frame" x="30" y="57" width="118" height="13.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lpy-DO-8ao">
-                                                    <rect key="frame" x="190" y="5" width="73" height="50"/>
-                                                    <color key="backgroundColor" red="0.88235294119999996" green="0.71372549019999998" blue="0.3550941339" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <rect key="frame" x="190" y="5" width="73" height="70"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -112,14 +111,14 @@
                                                 <constraint firstItem="Lpy-DO-8ao" firstAttribute="top" secondItem="4W7-JU-ZmO" secondAttribute="top" constant="5" id="KHa-Rj-Yr9"/>
                                                 <constraint firstAttribute="trailing" secondItem="Lpy-DO-8ao" secondAttribute="trailing" constant="130" id="Q1U-DK-Cay"/>
                                                 <constraint firstItem="Lpy-DO-8ao" firstAttribute="leading" secondItem="4W7-JU-ZmO" secondAttribute="leading" constant="190" id="Wej-Xa-pKb"/>
-                                                <constraint firstItem="YuK-hF-NME" firstAttribute="top" secondItem="IwW-Gt-od2" secondAttribute="bottom" constant="10" id="a6B-Tp-fzg"/>
+                                                <constraint firstItem="YuK-hF-NME" firstAttribute="top" secondItem="IwW-Gt-od2" secondAttribute="bottom" constant="30" id="a6B-Tp-fzg"/>
                                                 <constraint firstItem="kdB-xU-xsO" firstAttribute="centerY" secondItem="4W7-JU-ZmO" secondAttribute="centerY" id="bez-gh-kpx"/>
                                                 <constraint firstItem="kdB-xU-xsO" firstAttribute="leading" secondItem="4W7-JU-ZmO" secondAttribute="leading" constant="270" id="cTm-ki-2aL"/>
                                                 <constraint firstItem="YuK-hF-NME" firstAttribute="leading" secondItem="4W7-JU-ZmO" secondAttribute="leading" constant="30" id="iMq-BE-eVd"/>
                                                 <constraint firstItem="IwW-Gt-od2" firstAttribute="leading" secondItem="4W7-JU-ZmO" secondAttribute="leading" constant="30" id="lbj-1j-iVy"/>
                                                 <constraint firstItem="kdB-xU-xsO" firstAttribute="top" secondItem="4W7-JU-ZmO" secondAttribute="top" constant="20" id="rZ2-aD-WPy"/>
                                                 <constraint firstItem="Lpy-DO-8ao" firstAttribute="centerY" secondItem="4W7-JU-ZmO" secondAttribute="centerY" id="t28-gg-xio"/>
-                                                <constraint firstItem="IwW-Gt-od2" firstAttribute="top" secondItem="4W7-JU-ZmO" secondAttribute="top" constant="5" id="v6M-55-qUV"/>
+                                                <constraint firstItem="IwW-Gt-od2" firstAttribute="top" secondItem="4W7-JU-ZmO" secondAttribute="top" constant="10" id="v6M-55-qUV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
