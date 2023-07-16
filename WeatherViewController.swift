@@ -36,6 +36,8 @@ class WeatherViewController: UIViewController {
     
     func setViewsColor() {
         iconImageView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        view.backgroundColor = .systemTeal
+        weatherTableView.backgroundColor = .systemTeal
     }
     
     func setCurrentWeather(cityName: String) {
@@ -88,6 +90,8 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate, Sen
                 cell.iconImageView.image = iconImages[indexPath.row]
             }
         }
+        
+        cell.backgroundColor = .white
         
         return cell
     }
