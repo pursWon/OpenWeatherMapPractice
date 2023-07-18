@@ -11,6 +11,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherTableView: UITableView!
     
     let weatherAPI = WeatherAPI()
+    let celsiusUnit = UnitTemperature.celsius
     var cityGeoData: (lon: String, lat: String) = ("126.9784", "37.566")
     var city: String = ""
     
@@ -35,7 +36,6 @@ class WeatherViewController: UIViewController {
     }
     
     func setViewsColor() {
-        iconImageView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         view.backgroundColor = .systemTeal
         weatherTableView.backgroundColor = .systemTeal
     }
@@ -44,9 +44,9 @@ class WeatherViewController: UIViewController {
         weatherAPI.getCurrentWeatherData(setCity: cityName) { weatherData in
             self.weatherLabel.text = weatherData.weather[0].main
             self.cityNameLabel.text = weatherData.name
-            self.tempLabel.text = String(weatherData.main.temp)
-            self.minLabel.text = "최저 온도 : \(String(weatherData.main.tempMin))"
-            self.maxLabel.text = "최고 온도 : \(String(weatherData.main.tempMax))"
+            self.tempLabel.text = "\(Int(self.celsiusUnit.converter.value(fromBaseUnitValue: weatherData.main.temp)))°C"
+            self.minLabel.text = "최저 온도 : \(Int(self.celsiusUnit.converter.value(fromBaseUnitValue: weatherData.main.tempMin)))°C"
+            self.maxLabel.text = "최고 온도 : \(Int(self.celsiusUnit.converter.value(fromBaseUnitValue: weatherData.main.tempMax)))°C"
         } image: { iconImage in
             DispatchQueue.main.async {
                 self.iconImageView.image = iconImage
@@ -84,7 +84,7 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate, Sen
         weatherAPI.getFiveDaysWeatherData(setLon: cityGeoData.lon, setLat: cityGeoData.lat) { weatherData in
             cell.descriptionLabel.text = weatherData[indexPath.row].weather[0].description
             cell.dayLabel.text = String(weatherData[indexPath.row].dtTxt.split(separator: " ")[0])
-            cell.tempertureLabel.text = "\(weatherData[indexPath.row].main.tempMax) / \(weatherData[indexPath.row].main.tempMin)"
+            cell.tempertureLabel.text = "\(Int(self.celsiusUnit.converter.value(fromBaseUnitValue: weatherData[indexPath.row].main.tempMin)))°C / \(Int(self.celsiusUnit.converter.value(fromBaseUnitValue: weatherData[indexPath.row].main.tempMax)))°C"
         } images: { iconImages in
             DispatchQueue.main.async {
                 cell.iconImageView.image = iconImages[indexPath.row]
