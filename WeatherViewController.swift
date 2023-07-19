@@ -18,6 +18,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cityNameLabel.font = .boldSystemFont(ofSize: 33)
         setViewsColor()
         setCurrentWeather(cityName: "Seoul")
         setWeatherTableView()
@@ -36,13 +37,32 @@ class WeatherViewController: UIViewController {
     }
     
     func setViewsColor() {
-        view.backgroundColor = .systemTeal
-        weatherTableView.backgroundColor = .systemTeal
+        weatherTableView.backgroundColor = .white
     }
     
     func setCurrentWeather(cityName: String) {
         weatherAPI.getCurrentWeatherData(setCity: cityName) { weatherData in
             self.weatherLabel.text = weatherData.weather[0].main
+            
+            guard let currentWeather: String = self.weatherLabel.text else { return }
+            
+            switch currentWeather {
+            case "Clear":
+                self.view.backgroundColor = .tintColor
+                self.iconImageView.backgroundColor = .tintColor
+            case "Clouds":
+                self.view.backgroundColor = .systemGray4
+                self.iconImageView.backgroundColor = .systemGray4
+            case "Snow":
+                self.view.backgroundColor = .systemGray
+                self.iconImageView.backgroundColor = .systemGray
+            case "Rain":
+                self.view.backgroundColor = .systemGray6
+                self.iconImageView.backgroundColor = .systemGray6
+            default:
+                print("nothing")
+            }
+            
             self.cityNameLabel.text = weatherData.name
             self.tempLabel.text = "\(Int(self.celsiusUnit.converter.value(fromBaseUnitValue: weatherData.main.temp)))°C"
             self.minLabel.text = "최저 온도 : \(Int(self.celsiusUnit.converter.value(fromBaseUnitValue: weatherData.main.tempMin)))°C"
