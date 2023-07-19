@@ -33,11 +33,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="le7-K7-6Fg">
-                                <rect key="frame" x="100" y="163" width="193" height="105"/>
+                                <rect key="frame" x="100" y="172.66666666666666" width="193" height="95.333333333333343"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도시" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVy-xk-aZm">
-                                <rect key="frame" x="175" y="123" width="43.333333333333343" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <rect key="frame" x="168" y="123.00000000000001" width="57.333333333333343" height="39.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -82,8 +83,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwW-Gt-od2">
-                                                    <rect key="frame" x="30" y="10" width="123" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="30" y="10" width="123" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -94,7 +95,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날씨 설명 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YuK-hF-NME">
-                                                    <rect key="frame" x="30" y="57" width="118" height="13.333333333333329"/>
+                                                    <rect key="frame" x="30" y="60" width="118" height="10"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -107,10 +108,12 @@
                                                 <constraint firstAttribute="trailing" secondItem="YuK-hF-NME" secondAttribute="trailing" constant="245" id="1dP-Yl-oKg"/>
                                                 <constraint firstAttribute="trailing" secondItem="kdB-xU-xsO" secondAttribute="trailing" constant="20" id="3d7-Ez-MyL"/>
                                                 <constraint firstAttribute="trailing" secondItem="IwW-Gt-od2" secondAttribute="trailing" constant="240" id="8pq-F9-svv"/>
+                                                <constraint firstAttribute="bottom" secondItem="YuK-hF-NME" secondAttribute="bottom" constant="10" id="AfJ-5S-dnE"/>
                                                 <constraint firstItem="Lpy-DO-8ao" firstAttribute="top" secondItem="4W7-JU-ZmO" secondAttribute="top" constant="5" id="KHa-Rj-Yr9"/>
                                                 <constraint firstAttribute="trailing" secondItem="Lpy-DO-8ao" secondAttribute="trailing" constant="130" id="Q1U-DK-Cay"/>
+                                                <constraint firstAttribute="bottom" secondItem="IwW-Gt-od2" secondAttribute="bottom" constant="30" id="Rqm-P2-q2F"/>
+                                                <constraint firstItem="YuK-hF-NME" firstAttribute="top" secondItem="4W7-JU-ZmO" secondAttribute="top" constant="60" id="VUf-Pc-GwU"/>
                                                 <constraint firstItem="Lpy-DO-8ao" firstAttribute="leading" secondItem="4W7-JU-ZmO" secondAttribute="leading" constant="190" id="Wej-Xa-pKb"/>
-                                                <constraint firstItem="YuK-hF-NME" firstAttribute="top" secondItem="IwW-Gt-od2" secondAttribute="bottom" constant="30" id="a6B-Tp-fzg"/>
                                                 <constraint firstItem="kdB-xU-xsO" firstAttribute="centerY" secondItem="4W7-JU-ZmO" secondAttribute="centerY" id="bez-gh-kpx"/>
                                                 <constraint firstItem="kdB-xU-xsO" firstAttribute="leading" secondItem="4W7-JU-ZmO" secondAttribute="leading" constant="270" id="cTm-ki-2aL"/>
                                                 <constraint firstItem="YuK-hF-NME" firstAttribute="leading" secondItem="4W7-JU-ZmO" secondAttribute="leading" constant="30" id="iMq-BE-eVd"/>
@@ -131,7 +134,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UVy-xk-aZm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3Ke-yd-wN4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="le7-K7-6Fg" secondAttribute="bottom" constant="550" id="5MI-UR-FIY"/>
