@@ -44,10 +44,8 @@ class WeatherAPI: WeatherAPIProtocol {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             let currentDate = formatter.string(from: Date())
-            
             let newData = data.list.filter { !$0.dtTxt.contains(currentDate) }.filter { $0.dtTxt.contains("12:00:00") }
             let imageStrings = newData.map { $0.weather[0].icon }
-            
             completion(newData)
             
             DispatchQueue.global().async {
@@ -62,7 +60,6 @@ class WeatherAPI: WeatherAPIProtocol {
                     
                     iconImages.append(image)
                 }
-                
                 images(iconImages)
             }
         }
