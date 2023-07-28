@@ -19,7 +19,6 @@ class WeatherAPI: WeatherAPIProtocol {
         AF.request(url, method: .post).responseDecodable(of: CurrentData.self) { response in
             guard response.error == nil else { return }
             guard let data = response.value else { return }
-            
             completion(data)
             
             self.getWeatherImage(iconNumber: data.weather[0].icon) { iconImage in
