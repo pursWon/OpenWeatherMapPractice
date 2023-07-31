@@ -27,6 +27,8 @@ https://github.com/pursWon/OpenWeatherMapPractice/assets/99719661/fe01667c-da81-
 
 - 도시 이름을 검색해서 다른 나라의 현재 날씨를 보여주게끔 설정
 - `tableView`를 터치했을 때, 움직이지 않도록 설정
+- 무료 Font 다운받아서 글씨체 설정
+- 도시에 관한 설명을 볼 수 있게끔 설정
 
 ## 트러블 슈팅
 
