@@ -251,11 +251,37 @@
                     <view key="view" contentMode="scaleToFill" id="enU-ef-2Sf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="S0V-wa-Z1d">
+                                <rect key="frame" x="0.0" y="109" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="KBM-4P-c5E" id="LHH-Ib-dCb"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="kbA-IY-dHO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S0V-wa-Z1d" firstAttribute="top" secondItem="kbA-IY-dHO" secondAttribute="top" constant="50" id="AoD-vx-DMX"/>
+                            <constraint firstItem="kbA-IY-dHO" firstAttribute="trailing" secondItem="S0V-wa-Z1d" secondAttribute="trailing" id="Z2R-ap-MyZ"/>
+                            <constraint firstItem="S0V-wa-Z1d" firstAttribute="leading" secondItem="kbA-IY-dHO" secondAttribute="leading" id="zot-ba-TnI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="epT-6P-39e" id="FLi-u3-dpp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXx-tP-8GU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="epT-6P-39e">
+                    <connections>
+                        <outlet property="delegate" destination="KBM-4P-c5E" id="sFy-Qp-5ec"/>
+                        <outlet property="searchBar" destination="S0V-wa-Z1d" id="JgX-Bw-7V1"/>
+                        <outlet property="searchContentsController" destination="KBM-4P-c5E" id="S1h-My-JWG"/>
+                        <outlet property="searchResultsDataSource" destination="KBM-4P-c5E" id="urv-bp-kwa"/>
+                        <outlet property="searchResultsDelegate" destination="KBM-4P-c5E" id="uCx-3Z-fxQ"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1653" y="2"/>
         </scene>
