@@ -159,6 +159,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0md-Du-1H4">
+                        <barButtonItem key="leftBarButtonItem" title="도시 검색" id="F5s-mf-TNx">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="pYP-a6-m4C">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="zhU-KE-Ajh">
                                 <rect key="frame" x="289.66666666666669" y="5" width="87.333333333333314" height="34.333333333333336"/>
@@ -244,44 +247,79 @@
             </objects>
             <point key="canvasLocation" x="844" y="-2"/>
         </scene>
-        <!--View Controller-->
+        <!--SearchViewController-->
         <scene sceneID="oOT-FO-F4s">
             <objects>
-                <viewController id="KBM-4P-c5E" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" title="SearchViewController" id="KBM-4P-c5E" customClass="SearchViewController" customModule="OpenWeatherMapPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="enU-ef-2Sf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="S0V-wa-Z1d">
-                                <rect key="frame" x="0.0" y="109" width="393" height="56"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="KBM-4P-c5E" id="LHH-Ib-dCb"/>
                                 </connections>
                             </searchBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hgn-EK-J1p">
+                                <rect key="frame" x="100" y="159" width="193" height="139"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="온도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhW-c2-LYT">
+                                <rect key="frame" x="150" y="348" width="93" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날씨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJg-ZL-XFt">
+                                <rect key="frame" x="170" y="452" width="53" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="center" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8wZ-7D-pvy">
+                                <rect key="frame" x="130" y="528" width="133" height="18"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최저 온도 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yr-9o-aoe">
+                                        <rect key="frame" x="0.0" y="0.0" width="61.666666666666664" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최고 온도 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szv-uw-wh1">
+                                        <rect key="frame" x="71.666666666666657" y="0.0" width="61.333333333333343" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kbA-IY-dHO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="S0V-wa-Z1d" firstAttribute="top" secondItem="kbA-IY-dHO" secondAttribute="top" constant="50" id="AoD-vx-DMX"/>
+                            <constraint firstItem="vhW-c2-LYT" firstAttribute="centerX" secondItem="kbA-IY-dHO" secondAttribute="centerX" id="1DE-uG-rnK"/>
+                            <constraint firstItem="S0V-wa-Z1d" firstAttribute="top" secondItem="kbA-IY-dHO" secondAttribute="top" id="AoD-vx-DMX"/>
+                            <constraint firstItem="kbA-IY-dHO" firstAttribute="trailing" secondItem="Hgn-EK-J1p" secondAttribute="trailing" constant="100" id="E2e-yj-qKg"/>
+                            <constraint firstItem="Hgn-EK-J1p" firstAttribute="leading" secondItem="kbA-IY-dHO" secondAttribute="leading" constant="100" id="EuZ-sR-scZ"/>
+                            <constraint firstItem="iJg-ZL-XFt" firstAttribute="top" secondItem="vhW-c2-LYT" secondAttribute="bottom" constant="50" id="M55-PJ-SyJ"/>
+                            <constraint firstItem="iJg-ZL-XFt" firstAttribute="leading" secondItem="kbA-IY-dHO" secondAttribute="leading" constant="170" id="MFB-da-zsY"/>
+                            <constraint firstItem="8wZ-7D-pvy" firstAttribute="leading" secondItem="kbA-IY-dHO" secondAttribute="leading" constant="130" id="WD5-FN-qeX"/>
                             <constraint firstItem="kbA-IY-dHO" firstAttribute="trailing" secondItem="S0V-wa-Z1d" secondAttribute="trailing" id="Z2R-ap-MyZ"/>
+                            <constraint firstItem="kbA-IY-dHO" firstAttribute="trailing" secondItem="vhW-c2-LYT" secondAttribute="trailing" constant="150" id="dIz-O0-dOM"/>
+                            <constraint firstItem="8wZ-7D-pvy" firstAttribute="top" secondItem="iJg-ZL-XFt" secondAttribute="bottom" constant="40" id="dYZ-rP-Uur"/>
+                            <constraint firstItem="vhW-c2-LYT" firstAttribute="top" secondItem="Hgn-EK-J1p" secondAttribute="bottom" constant="50" id="efi-0y-xaa"/>
+                            <constraint firstItem="kbA-IY-dHO" firstAttribute="bottom" secondItem="Hgn-EK-J1p" secondAttribute="bottom" constant="520" id="f6u-eP-0ny"/>
+                            <constraint firstItem="kbA-IY-dHO" firstAttribute="trailing" secondItem="8wZ-7D-pvy" secondAttribute="trailing" constant="130" id="lA6-Li-ncq"/>
+                            <constraint firstItem="Hgn-EK-J1p" firstAttribute="top" secondItem="kbA-IY-dHO" secondAttribute="top" constant="100" id="og0-vg-PqT"/>
+                            <constraint firstItem="vhW-c2-LYT" firstAttribute="leading" secondItem="kbA-IY-dHO" secondAttribute="leading" constant="150" id="xR7-bg-lqA"/>
+                            <constraint firstItem="kbA-IY-dHO" firstAttribute="trailing" secondItem="iJg-ZL-XFt" secondAttribute="trailing" constant="170" id="zIa-Kl-lxv"/>
                             <constraint firstItem="S0V-wa-Z1d" firstAttribute="leading" secondItem="kbA-IY-dHO" secondAttribute="leading" id="zot-ba-TnI"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="epT-6P-39e" id="FLi-u3-dpp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXx-tP-8GU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="epT-6P-39e">
-                    <connections>
-                        <outlet property="delegate" destination="KBM-4P-c5E" id="sFy-Qp-5ec"/>
-                        <outlet property="searchBar" destination="S0V-wa-Z1d" id="JgX-Bw-7V1"/>
-                        <outlet property="searchContentsController" destination="KBM-4P-c5E" id="S1h-My-JWG"/>
-                        <outlet property="searchResultsDataSource" destination="KBM-4P-c5E" id="urv-bp-kwa"/>
-                        <outlet property="searchResultsDelegate" destination="KBM-4P-c5E" id="uCx-3Z-fxQ"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1653" y="2"/>
         </scene>
@@ -292,6 +330,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
